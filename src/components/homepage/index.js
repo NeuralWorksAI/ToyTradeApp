@@ -180,7 +180,6 @@ function Index() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal}>close</button>
         Donate a Toy
         <form>
           <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -245,14 +244,22 @@ function Index() {
               </div>
             </div>
           </div>
-
-          <button
-            onClick={(e) => {
-              handleSubmit(e);
-            }}
-          >
-            Submit
-          </button>
+          <div className="flex space-x-4 justify-around pt-6">
+            <button
+              onClick={closeModal}
+              className=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 border border-solid px-2 py-2 rounded-full"
+            >
+              close
+            </button>
+            <button
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+              className=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 border border-solid px-2 py-2 rounded-full"
+            >
+              submit
+            </button>
+          </div>
         </form>
       </Modal>
     </div>
