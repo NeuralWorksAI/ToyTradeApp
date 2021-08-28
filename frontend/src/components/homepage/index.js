@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./homepage.css";
 
-function Index() {
+function Index({ handleLogout }) {
   const handleSearch = (e) => {
     e.preventDefault();
   };
+
   return (
     <div>
       homepage
+      <button onClick={handleLogout}>log out</button>
       <div className="homeParent">
         <div className="query">
           <h2>query</h2>

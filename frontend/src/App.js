@@ -59,6 +59,11 @@ function App() {
     //   })
     // }
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    console.log("hello");
+  };
   return (
     <div className="App">
       <Switch>
@@ -95,7 +100,7 @@ function App() {
           exact
           path="/dashboard"
           render={() => {
-            return <Homepage />;
+            return <Homepage handleLogout={handleLogout} />;
           }}
         />
       </Switch>
