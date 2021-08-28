@@ -48,6 +48,7 @@ function App() {
   };
 
   const handleAuthResponse = (data) => {
+    console.log(data);
     if (data.token) {
       const token = data.token;
       localStorage.setItem("token", token);
