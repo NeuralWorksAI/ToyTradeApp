@@ -1,16 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../navbar/index";
 import "./homepage.css";
 
-function Index({ handleLogout }) {
+function Index() {
   const handleSearch = (e) => {
     e.preventDefault();
   };
 
   return (
     <div>
+      <Navbar />
       homepage
-      <button onClick={handleLogout}>log out</button>
       <div className="homeParent">
         <div className="query">
           <h2>query</h2>
@@ -33,7 +34,7 @@ function Index({ handleLogout }) {
             <span>New</span>
             <span>Price</span>
           </div>
-          <div>body</div>
+          <div>body **filled with cards (map through an api)</div>
         </div>
       </div>
     </div>

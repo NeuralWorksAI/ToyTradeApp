@@ -4,6 +4,7 @@ import Login from "./components/login/index";
 import Signup from "./components/signup/index";
 import Landing from "./components/landingpage/index";
 import LearnMore from "./components/LearnMore/index";
+import Navbar from "./components/navbar/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -60,10 +61,6 @@ function App() {
     // }
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    console.log("hello");
-  };
   return (
     <div className="App">
       <Switch>
@@ -95,12 +92,13 @@ function App() {
             return <Signup handleSignup={handleSignup} />;
           }}
         />
-        {!localStorage.token && <Redirect to="/" />}
+        {/* {!localStorage.token && <Redirect to="/" />} */}
+
         <Route
           exact
           path="/dashboard"
           render={() => {
-            return <Homepage handleLogout={handleLogout} />;
+            return <Homepage />;
           }}
         />
       </Switch>
