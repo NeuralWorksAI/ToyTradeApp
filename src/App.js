@@ -1,4 +1,4 @@
-import "./App.css";
+import "./style.scss";
 import Homepage from "./components/homepage/index";
 import Login from "./components/login/index";
 import Signup from "./components/signup/index";
