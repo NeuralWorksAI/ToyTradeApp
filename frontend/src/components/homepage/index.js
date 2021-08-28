@@ -18,12 +18,43 @@ function Index() {
         <Navbar />
       </div>
       homepage
-      <div className="flex justify-center pt-5 w-screen">
-        <div className="p-10 bg-red-400 text-white w-4/12">
+      <div className="flex justify-center pt-5 w-screen space-x-5 ">
+        <div className="p-10 bg-yellow-200 text-yellow-700 w-4/12 rounded-xl ">
           <div>
             <h2>query</h2>
             <div>filter</div>
-            <div>categories</div>
+            <div className="flex flex-col">
+              categories
+              <div className="mt-2 flex flex-col">
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2">Playsets</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2">Stuffed Animals</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2">Dolls</span>
+                </label>
+              </div>
+            </div>
             <div>price range</div>
           </div>
         </div>
