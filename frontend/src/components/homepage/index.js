@@ -72,13 +72,22 @@ function Index() {
           <div className="p-4 space-x-2 ">
             <span
               onClick={handleClick}
-              className="border-solid border-2 rounded-lg p-1 hover:bg-red-400 hover:border-transparent"
+              className="
+              
+              rounded-full py-1 px-3
+              bg-red-200
+              text-white
+              hover:bg-red-400 hover:border-transparent"
             >
               new
             </span>
             <span
               onClick={handleClick}
-              className="border-solid border-2 rounded-lg p-1 hover:bg-red-400 hover:border-transparent"
+              className="
+              rounded-full py-1 px-3
+              bg-red-200
+              text-white
+              hover:bg-red-400 hover:border-transparent"
             >
               price
             </span>
