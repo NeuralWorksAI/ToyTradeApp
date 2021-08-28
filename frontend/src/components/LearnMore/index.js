@@ -5,7 +5,7 @@ function index() {
   return (
     <div>
       Learn More
-      <Link to="/">back</Link>
+      <button>{<Link to="/">back</Link>}</button>
     </div>
   );
 }

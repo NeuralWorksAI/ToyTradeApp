@@ -4,7 +4,6 @@ import Login from "./components/login/index";
 import Signup from "./components/signup/index";
 import Landing from "./components/landingpage/index";
 import LearnMore from "./components/LearnMore/index";
-import Navbar from "./components/navbar/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 
