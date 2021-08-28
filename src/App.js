@@ -5,74 +5,56 @@ import Signup from "./components/signup/index";
 import Landing from "./components/landingpage/index";
 import LearnMore from "./components/LearnMore/index";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 function App() {
-  const api = "https://toy-trader.herokuapp.com/users";
-  useEffect(() => {
-    const token = localStorage.token;
-    if (token) {
-      console.log("this works!");
-    }
-  }, []);
+  let history = useHistory();
+  const api = "https://toy-trader.herokuapp.com/api";
 
   const handleLogin = (e, email, password) => {
     e.preventDefault();
-    /* this works */
-    // fetch(api + "/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(loginInfo),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => this.handleAuthResponse(data))
-    //   .catch((error) => alert(error));
-  };
-
-  const handleSignup = (e, name, password, confirm, email) => {
-    e.preventDefault();
-
-    fetch(api + "/register", {
+    fetch(api + "/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    })
+      .then((response) => response.json())
+      .then((data) => handleAuthResponse(data))
+      .catch((error) => alert(error));
+  };
+
+  const handleSignup = (e, name, email, password, confirm) => {
+    e.preventDefault();
+    console.log(name, password, confirm, email);
+    fetch("https://toy-trader.herokuapp.com/api/users/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
 
       body: JSON.stringify({
         name: name,
-        password: password,
         email: email,
+        password: password,
         password2: confirm,
       }),
     })
       .then((response) => response.json())
       .then((data) => handleAuthResponse(data))
+
       .catch(console.log);
   };
 
   const handleAuthResponse = (data) => {
-    console.log(data);
-    // if (data.username) {
-    //   const { username, id, token } = data;
-    //   this.setState({
-    //     user: {
-    //       username,
-    //       id,
-    //     },
-    //     error: null,
-    //   })
-    //   localStorage.setItem('token', token)
-    //   this.props.history.push('/notes')
-    //   // console.log(this.props.history.push("/notes"))
-    //   // console.log(this.props) im not sure what to push to the history of props?
-    // } else if (data.error) {
-    //   this.setState({
-    //     error: data.error
-    //   })
-    // }
+    if (data.token) {
+      const token = data.token;
+      localStorage.setItem("token", token);
+      history.push("/dashboard");
+    } else if (data.name) {
+      history.push("/dashboard");
+    }
   };
 
   return (

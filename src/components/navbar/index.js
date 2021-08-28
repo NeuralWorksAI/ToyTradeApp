@@ -1,9 +1,10 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 function Index() {
+  let history = useHistory();
   const handleLogout = () => {
     localStorage.clear();
-    console.log("hello");
+    history.push("/");
   };
 
   return (

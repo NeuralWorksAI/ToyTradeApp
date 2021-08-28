@@ -62,7 +62,7 @@ function Index({ handleSignup }) {
                   handleChange(e);
                 }}
                 name="email"
-                placeholder="re-enter password"
+                placeholder="enter email"
                 type="text"
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
               />
@@ -98,7 +98,7 @@ function Index({ handleSignup }) {
           </div>
           <button
             type="submit"
-            onClick={(e) => handleSignup(e, name, password, email, confirm)}
+            onClick={(e) => handleSignup(e, name, email, password, confirm)}
             className="border border-solid rounded-full py-1 px-3"
           >
             Sign Up
