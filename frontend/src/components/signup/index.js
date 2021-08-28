@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Index() {
+function Index({ handleSignup }) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const handleChange = (e) => {
@@ -18,24 +18,6 @@ function Index() {
       default:
         alert("something");
     }
-  };
-  const handleSignUp = (e, user, password) => {
-    e.preventDefault();
-    // fetch(api + "/signup", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ user: user, password: password }),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => this.handleAuthResponse(data))
-    //   .catch(console.log);
-  };
-
-  const handleAuthResponse = (data) => {
-    //confirm that the data is data.user, which is true, then
-    //push the user to the /dashboard route
   };
 
   return (
@@ -72,7 +54,7 @@ function Index() {
             placeholder="re-enter password"
           />
         </div>
-        <button onClick={(e) => handleSignUp(e, user, password)}>
+        <button type="submit" onClick={(e) => handleSignup(e, user, password)}>
           Sign Up
         </button>
       </form>

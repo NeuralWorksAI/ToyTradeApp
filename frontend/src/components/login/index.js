@@ -2,18 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Index() {
+function Index({ handleLogin }) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const handleChange = (e) => {
     switch (e.target.name) {
       case "username":
         setUser(e.target.value);
-        console.log("this is the user", user);
         break;
       case "password":
         setPassword(e.target.value);
-        console.log("this is the password", password);
         break;
       default:
         alert("something");
@@ -43,7 +41,14 @@ function Index() {
             placeholder="enter password"
           />
         </div>
-        <button>Login</button>
+        <button
+          type="submit"
+          onClick={(e) => {
+            handleLogin(e, user, password);
+          }}
+        >
+          Login
+        </button>
       </form>
       <div>
         Don't have an account?

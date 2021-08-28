@@ -5,8 +5,34 @@ import Signup from "./components/signup/index";
 import Landing from "./components/landingpage/index";
 import LearnMore from "./components/LearnMore/index";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    const token = localStorage.token;
+    if (token) {
+      console.log("this works!");
+    }
+  }, []);
+
+  const handleLogin = (e, user, password) => {
+    e.preventDefault();
+    /* this works */
+    // fetch(api + "/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginInfo),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => this.handleAuthResponse(data))
+    //   .catch((error) => alert(error));
+  };
+
+  const handleSignup = (e, user, password) => {
+    e.preventDefault();
+  };
   return (
     <div className="App">
       <Switch>
@@ -28,17 +54,17 @@ function App() {
           exact
           path="/login"
           render={() => {
-            return <Login />;
+            return <Login handleLogin={handleLogin} />;
           }}
         />
         <Route
           exact
           path="/signup"
           render={() => {
-            return <Signup />;
+            return <Signup handleSignup={handleSignup} />;
           }}
         />
-        {/* {!localStorage.token && <Redirect to="/login" />} */}
+        {!localStorage.token && <Redirect to="/" />}
         <Route
           exact
           path="/dashboard"
