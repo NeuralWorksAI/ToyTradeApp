@@ -38,6 +38,27 @@ function App() {
       console.log("send POST fetch");
     }
   };
+
+  const handleAuthResponse = (data) => {
+    // if (data.username) {
+    //   const { username, id, token } = data;
+    //   this.setState({
+    //     user: {
+    //       username,
+    //       id,
+    //     },
+    //     error: null,
+    //   })
+    //   localStorage.setItem('token', token)
+    //   this.props.history.push('/notes')
+    //   // console.log(this.props.history.push("/notes"))
+    //   // console.log(this.props) im not sure what to push to the history of props?
+    // } else if (data.error) {
+    //   this.setState({
+    //     error: data.error
+    //   })
+    // }
+  };
   return (
     <div className="App">
       <Switch>
