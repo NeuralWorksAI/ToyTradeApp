@@ -19,6 +19,7 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://toy-trader.herokuapp.com/users",
   "eslintConfig": {
     "extends": [
       "react-app",

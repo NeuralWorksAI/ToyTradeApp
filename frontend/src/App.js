@@ -8,6 +8,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 
 function App() {
+  const api = "https://toy-trader.herokuapp.com/users";
   useEffect(() => {
     const token = localStorage.token;
     if (token) {
@@ -15,7 +16,7 @@ function App() {
     }
   }, []);
 
-  const handleLogin = (e, user, password) => {
+  const handleLogin = (e, email, password) => {
     e.preventDefault();
     /* this works */
     // fetch(api + "/login", {
@@ -30,16 +31,30 @@ function App() {
     //   .catch((error) => alert(error));
   };
 
-  const handleSignup = (e, user, password, confirm) => {
+  const handleSignup = (e, name, password, confirm, email) => {
     e.preventDefault();
-    if (password !== confirm) {
-      alert("please check your password matches");
-    } else {
-      console.log("send POST fetch");
-    }
+
+    fetch(api + "/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+
+      body: JSON.stringify({
+        name: name,
+        password: password,
+        email: email,
+        password2: confirm,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => handleAuthResponse(data))
+      .catch(console.log);
   };
 
   const handleAuthResponse = (data) => {
+    console.log(data);
     // if (data.username) {
     //   const { username, id, token } = data;
     //   this.setState({

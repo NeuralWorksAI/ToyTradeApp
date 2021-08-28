@@ -41,10 +41,7 @@ function Index({ handleSignup }) {
           Signup
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-first-name"
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 name
               </label>
               <input
@@ -57,10 +54,7 @@ function Index({ handleSignup }) {
               />
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-first-name"
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 email
               </label>
               <input
@@ -74,10 +68,7 @@ function Index({ handleSignup }) {
               />
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-first-name"
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Password
               </label>
               <input
@@ -91,10 +82,7 @@ function Index({ handleSignup }) {
               />
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                for="grid-first-name"
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Re-Enter Password
               </label>
               <input
@@ -111,7 +99,7 @@ function Index({ handleSignup }) {
           <button
             type="submit"
             onClick={(e) => handleSignup(e, name, password, email, confirm)}
-            className="border border-solid bg-red-400 p-1 rounded-xl"
+            className="border border-solid rounded-full py-1 px-3"
           >
             Sign Up
           </button>
