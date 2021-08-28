@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function Index({ handleSignup }) {
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [confirm, setConfirm] = useState("");
   const handleChange = (e) => {
     // let confirm;
@@ -12,9 +13,8 @@ function Index({ handleSignup }) {
     //   confirm = e.target.value;
     // }
     switch (e.target.name) {
-      case "username":
-        setUser(e.target.value);
-        console.log("this is the user", user);
+      case "name":
+        setName(e.target.value);
         break;
       case "password":
         // if (e.target.value !== confirm) {
@@ -26,6 +26,9 @@ function Index({ handleSignup }) {
       case "confirm":
         setConfirm(e.target.value);
         break;
+      case "email":
+        setEmail(e.target.value);
+        break;
       default:
         alert("something");
     }
@@ -33,52 +36,97 @@ function Index({ handleSignup }) {
 
   return (
     <div>
-      Signup
-      <form>
-        <div>
-          Username:
-          <input
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="username"
-            placeholder="enter username"
-          />
-        </div>
-        <div>
-          Password:
-          <input
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="password"
-            placeholder="enter password"
-            type="password"
-          />
-        </div>
-        <div>
-          Confirm Password:
-          <input
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="confirm"
-            placeholder="re-enter password"
-            type="password"
-          />
-        </div>
-        <button
-          type="submit"
-          onClick={(e) => handleSignup(e, user, password, confirm)}
-        >
-          Sign Up
-        </button>
-      </form>
+      <div className=" mx-64 w-full">
+        <form className="w-full max-w-lg">
+          Signup
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                name
+              </label>
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="name"
+                placeholder="name"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                email
+              </label>
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="email"
+                placeholder="re-enter password"
+                type="text"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                Password
+              </label>
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="password"
+                placeholder="password"
+                type="password"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                Re-Enter Password
+              </label>
+              <input
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="confirm"
+                placeholder="re-enter password"
+                type="password"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            onClick={(e) => handleSignup(e, name, password, email, confirm)}
+            className="border border-solid bg-red-400 p-1 rounded-xl"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+
       <div>
         Already have an account?
-        <Link to="/login">Log in</Link>
+        <button className="border border-solid bg-red-400 p-1 rounded-xl">
+          <Link to="/login"> Log in</Link>
+        </button>
       </div>
-      <Link to="/">back</Link>
+      <button className="border border-solid bg-red-400 p-1 rounded-xl">
+        <Link to="/">back</Link>
+      </button>
     </div>
   );
 }
