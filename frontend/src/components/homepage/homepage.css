@@ -1,0 +1,30 @@
+.query {
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  border-style: solid;
+}
+
+.homeParent {
+  display: flex;
+  height: 100%;
+  border-color: pink;
+  border-style: solid;
+  justify-content: center;
+}
+
+.mainContent {
+  border-color: yellow;
+  border-style: solid;
+}
+
+.search {
+  border-color: black;
+  border-style: solid;
+}
+
+.sort {
+  display: flex;
+  border-color: pink;
+  border-style: solid;
+}
