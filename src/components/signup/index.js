@@ -7,6 +7,7 @@ function Index({ handleSignup }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [confirm, setConfirm] = useState("");
+  
   const handleChange = (e) => {
     // let confirm;
     // if (e.target.name === "confirm") {
