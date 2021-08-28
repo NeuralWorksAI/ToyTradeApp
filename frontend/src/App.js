@@ -30,8 +30,13 @@ function App() {
     //   .catch((error) => alert(error));
   };
 
-  const handleSignup = (e, user, password) => {
+  const handleSignup = (e, user, password, confirm) => {
     e.preventDefault();
+    if (password !== confirm) {
+      alert("please check your password matches");
+    } else {
+      console.log("send POST fetch");
+    }
   };
   return (
     <div className="App">

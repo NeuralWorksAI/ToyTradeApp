@@ -39,6 +39,7 @@ function Index({ handleLogin }) {
             }}
             name="password"
             placeholder="enter password"
+            type="password"
           />
         </div>
         <button
