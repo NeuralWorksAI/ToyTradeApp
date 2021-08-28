@@ -22,7 +22,9 @@ function index() {
         to do our part in creating a circular economy for reusing toys, Toyrade
         creates a community for children to share and receive toys from others.
       </p>
-      <button>{<Link to="/">back</Link>}</button>
+      <button className="border border-solid bg-blue-400 rounded-xl p-1">
+        {<Link to="/">back</Link>}
+      </button>
     </div>
   );
 }
