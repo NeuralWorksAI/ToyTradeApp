@@ -4,6 +4,7 @@ import Login from "./components/login/index";
 import Signup from "./components/signup/index";
 import Landing from "./components/landingpage/index";
 import LearnMore from "./components/LearnMore/index";
+import Profile from "./components/profile/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
@@ -96,6 +97,13 @@ function App() {
           path="/dashboard"
           render={() => {
             return <Homepage />;
+          }}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={() => {
+            return <Profile />;
           }}
         />
       </Switch>
