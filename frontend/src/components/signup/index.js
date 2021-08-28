@@ -19,6 +19,25 @@ function Index() {
         alert("something");
     }
   };
+  const handleSignUp = (e, user, password) => {
+    e.preventDefault();
+    // fetch(api + "/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ user: user, password: password }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => this.handleAuthResponse(data))
+    //   .catch(console.log);
+  };
+
+  const handleAuthResponse = (data) => {
+    //confirm that the data is data.user, which is true, then
+    //push the user to the /dashboard route
+  };
+
   return (
     <div>
       Signup
@@ -53,7 +72,9 @@ function Index() {
             placeholder="re-enter password"
           />
         </div>
-        <button>Sign Up</button>
+        <button onClick={(e) => handleSignUp(e, user, password)}>
+          Sign Up
+        </button>
       </form>
       <div>
         Already have an account?
