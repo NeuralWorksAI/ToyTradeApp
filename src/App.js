@@ -7,7 +7,7 @@ import LearnMore from "./components/LearnMore/index";
 import Profile from "./components/profile/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   let history = useHistory();
@@ -52,7 +52,7 @@ function App() {
   };
 
   const handleAuthResponse = (data) => {
-    console.log(data);
+    console.log("this is the data", data);
     if (data.token) {
       const token = data.token;
       localStorage.setItem("token", token);
@@ -64,14 +64,25 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (data.token) {
+      setUserID(data.id);
+    } else if (data.name) {
+      setUserID(data._id);
+    }
+  });
+
+  console.log(userID);
   const postSubmit = (e, title, description, image, category) => {
     e.preventDefault();
     const token = localStorage.token;
-
+    console.log(userID, title, description, image, category);
     fetch("https://toy-trader.herokuapp.com/api/posts/add", {
       method: "POST",
+      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
+
         // Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
@@ -83,10 +94,13 @@ function App() {
       }),
     })
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((data) => setData(data))
+      .catch((err) => {
+        console.log("error posting" + err + category);
+      });
   };
   const authPost = (data) => {};
-
+  console.log("data from posts", data);
   return (
     <div className="App">
       <Switch>

@@ -22,6 +22,8 @@ function Index({ postSubmit, realData }) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
+  const [toys, setToys] = useState([]);
+
   console.log("data", realData);
   let arr = [];
 
@@ -34,9 +36,10 @@ function Index({ postSubmit, realData }) {
       case "description":
         setDescription(e.target.value);
         break;
-      // case "image":
-      //   setImage("image");
-      // break;
+
+      case "image":
+        setImage("image");
+        break;
       case "category":
         setCategory(e.target.value);
         break;
@@ -45,6 +48,9 @@ function Index({ postSubmit, realData }) {
     }
   };
 
+  const setSelect = (e) => {
+    setCategory(e.target.value);
+  };
   function openModal() {
     setIsOpen(true);
   }
@@ -62,7 +68,49 @@ function Index({ postSubmit, realData }) {
   const handleClick = () => {
     //span clicked
   };
-  console.log(data.concat(realData));
+
+  const fetchToys = () => {
+    fetch("https://toy-trader.herokuapp.com/api/posts/toys", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => setToys(data));
+  };
+
+  const sortToys = (toys) => {
+    return toys.map((x) => (
+      <div className="border border-solid rounded-xl justify-center max-w-xs p-3 m-1">
+        {" "}
+        <img
+          src={x.image}
+          alt={x.image}
+          style={{
+            maxWidth: "10rem",
+            margin: "0 auto",
+            maxHeight: "40vh",
+          }}
+        />
+        <div
+          className="flex flex-col "
+          style={{ display: "flex", justifyContent: "flex-start" }}
+        >
+          <div className="text-left"> {x.title} </div>
+          <div className="flex flex-col ">
+            {x.description.length > 100
+              ? x.description.substring(0, 100) + "..."
+              : x.description}
+            <span
+              className="border border-solid rounded-full text-xs inset-x-0 bottom-0 "
+              style={{ maxWidth: "7rem" }}
+            >
+              {x.toyCategory}
+            </span>
+          </div>
+        </div>
+      </div>
+    ));
+  };
+  fetchToys();
   return (
     <div>
       <div className="p-0.5 border border-blue-200 text-lg bg-blue-400 text-white">
@@ -158,39 +206,7 @@ function Index({ postSubmit, realData }) {
           </div>
           <div className="flex flex-wrap ">
             {/* {realData.length === 0 ?   */}
-            {data.map((x) => {
-              return (
-                <div className="border border-solid rounded-xl justify-center max-w-xs p-3 m-1">
-                  {" "}
-                  <img
-                    src={x.image}
-                    alt={x.userId}
-                    style={{
-                      maxWidth: "10rem",
-                      margin: "0 auto",
-                      maxHeight: "40vh",
-                    }}
-                  />
-                  <div
-                    className="flex flex-col "
-                    style={{ display: "flex", justifyContent: "flex-start" }}
-                  >
-                    <div className="text-left"> {x.title} </div>
-                    <div className="flex flex-col ">
-                      {x.description.length > 100
-                        ? x.description.substring(0, 100) + "..."
-                        : x.description}
-                      <span
-                        className="border border-solid rounded-full text-xs inset-x-0 bottom-0 "
-                        style={{ maxWidth: "7rem" }}
-                      >
-                        {x.toyCategory}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            {sortToys(toys)}
           </div>
         </div>
       </div>
@@ -198,7 +214,6 @@ function Index({ postSubmit, realData }) {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
         Donate a Toy
         <form>
@@ -241,22 +256,23 @@ function Index({ postSubmit, realData }) {
                   className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   name="category"
-                  onChange={(e) => handlePost(e)}
+                  onChange={(e) => setSelect(e)}
+                  value={category}
                   placeholder="category"
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select your option
                   </option>
-                  <option>action-figures</option>
-                  <option>stuffed-animals</option>
-                  <option>cars</option>
-                  <option>radio-controlled</option>
-                  <option>construction-toys</option>
-                  <option>creative-toys</option>
-                  <option>dolls</option>
-                  <option>educational-toys</option>
-                  <option>electronic-toys</option>
-                  <option>generic</option>
+                  <option value="action-figures">action-figures</option>
+                  <option value="stuffed-animals">stuffed-animals</option>
+                  <option value="cars">cars</option>
+                  <option value="radio-controlled">radio-controlled</option>
+                  <option value="construction-toys">construction-toys</option>
+                  <option value="creative-toys">creative-toys</option>
+                  <option value="dolls">dolls</option>
+                  <option value="educational-toys">educational-toys</option>
+                  <option value="electronic-toys">electronic-toys</option>
+                  <option value="generic">generic</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg

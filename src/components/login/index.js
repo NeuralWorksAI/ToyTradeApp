@@ -18,10 +18,19 @@ function Index({ handleLogin }) {
     }
   };
   return (
-    <div className="flex justify-center">
-      <div className=" w-44 flex flex-col justify-center">
-        <form className="">
-          Log in
+    <div
+      className="flex justify-center bg-contain h-screen"
+      style={{ backgroundColor: "#cbf3f0" }}
+    >
+      <div className="">
+        <form
+          className=" w-64 flex flex-col justify-center border  border-solid p-6 h-4/6 transform translate-x-4 translate-y-10 "
+          style={{ backgroundColor: "#ffbf69" }}
+        >
+          <p className="uppercase block relative inset-x-0 top-0  transform -translate-y-8 text-xl text-white">
+            Welcome back
+          </p>
+
           <div>
             <div>
               <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -56,24 +65,30 @@ function Index({ handleLogin }) {
               onClick={(e) => {
                 handleLogin(e, user, password);
               }}
-              className="border border-solid rounded-full py-1 px-3"
+              className="border border-solid rounded-full py-1 px-3 transform translate-y-3 text-white transition-shadow  duration-300 ease-in-out uppercase hover:shadow-lg"
+              style={{ backgroundColor: "#ff9f1c", borderColor: "#ff9f1c" }}
             >
               Log in
             </button>
           </div>
-        </form>
-
-        <div>
-          Don't have an account?
-          <div className="flex justify-evenly">
-            <button className="border border-solid bg-red-400 p-1 rounded-xl">
-              <Link to="/">back</Link>
-            </button>
-            <button className="border border-solid bg-red-400 p-1 rounded-xl">
-              <Link to="/signup">Sign Up</Link>
-            </button>
+          <div className="transform translate-y-8  pb-4 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+            Don't have an account?
+            <div className="flex justify-evenly pt-2 uppercase">
+              <button
+                className="border border-solid p-1 rounded-xl uppercase text-xs transition-shadow  duration-300 ease-in-out uppercase hover:shadow-lg"
+                style={{ backgroundColor: "#ffffff" }}
+              >
+                <Link to="/">back</Link>
+              </button>
+              <button
+                className="border border-solid p-1 rounded-xl uppercase text-xs transition-shadow  duration-300 ease-in-out uppercase hover:shadow-lg"
+                style={{ backgroundColor: "#ffffff" }}
+              >
+                <Link to="/signup">Sign Up</Link>
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
