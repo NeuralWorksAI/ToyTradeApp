@@ -4,6 +4,7 @@ import Navbar from "../navbar/index";
 import data from "../data.js";
 import Modal from "react-modal";
 import { useState } from "react";
+import { body } from "express-validator";
 
 const customStyles = {
   content: {
@@ -35,8 +36,10 @@ function Index() {
         break;
       case "image":
         setImage("image");
+        break;
       case "category":
         setCategory(e.target.value);
+        break;
       default:
         alert("something");
     }
@@ -47,9 +50,11 @@ function Index() {
     const token = localStorage.token;
     fetch("https://toy-trader.herokuapp.com/api/posts/add", {
       method: "POST",
+      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        // Authorization: `Bearer ${token}`,
+        
       },
       body: JSON.stringify({
         title: title,
@@ -57,7 +62,8 @@ function Index() {
         image: image,
         category: category,
       }),
-    }).then((response) => console.log(response.json()));
+    }).then((response) => console.log(response.json()))
+    .catch((err)=>{console.log("error posting" + err + category)})
   };
   function openModal() {
     setIsOpen(true);
@@ -257,7 +263,7 @@ function Index() {
                   onChange={(e) => handlePost(e)}
                   placeholder="category"
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select your option
                   </option>
                   <option>action-figures</option>
