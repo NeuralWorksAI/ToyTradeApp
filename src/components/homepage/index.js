@@ -24,7 +24,6 @@ function Index({ postSubmit, realData }) {
   const [category, setCategory] = useState("");
   const [toys, setToys] = useState([]);
 
-  console.log("data", realData);
   let arr = [];
 
   const handlePost = (e) => {
@@ -113,7 +112,10 @@ function Index({ postSubmit, realData }) {
   fetchToys();
   return (
     <div>
-      <div className="p-0.5 border border-blue-200 text-lg bg-blue-400 text-white">
+      <div
+        className="p-0.5 border border-blue-200 text-lg text-white"
+        style={{ backgroundColor: "#FFBF69" }}
+      >
         <div className="flex  justify-around p-1 ">
           <button
             onClick={openModal}
@@ -129,14 +131,15 @@ function Index({ postSubmit, realData }) {
           <Navbar />
         </div>
       </div>
-      homepage
-      <div className="flex justify-center pt-5 w-screen space-x-5 ">
-        <div className="p-10 bg-yellow-200 text-yellow-700 w-4/12 rounded-xl ">
+
+      <div className="flex justify-center  w-screen space-x-5  m-3">
+        <div
+          className=" text-yellow-700 w-10/12  "
+          style={{ backgroundColor: "#CBF3F0" }}
+        >
           <div>
-            <h2>query</h2>
-            <div>filter</div>
-            <div className="flex flex-col">
-              categories
+            <div className="flex flex-col uppercase text-sm pt-6">
+              <p className="font-bold ">categories</p>
               <div className="mt-2 flex flex-col">
                 <label className="inline-flex items-center ml-6">
                   <input
@@ -145,7 +148,10 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2">Playsets</span>
+                  <span className="ml-2 uppercase text-sm">
+                    {" "}
+                    action-figures
+                  </span>
                 </label>
                 <label className="inline-flex items-center ml-6">
                   <input
@@ -154,7 +160,9 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2">Stuffed Animals</span>
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    stuffed-animals
+                  </span>
                 </label>
                 <label className="inline-flex items-center ml-6">
                   <input
@@ -163,11 +171,89 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2">Dolls</span>
+                  <span className="ml-2 ml-2 uppercase text-sm">cars</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    {" "}
+                    radio-controlled
+                  </span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    {" "}
+                    construction-toys
+                  </span>
+                </label>
+
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    {" "}
+                    creative-toys
+                  </span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">dolls</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    {" "}
+                    educational-toys
+                  </span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm">
+                    {" "}
+                    electronic-toys
+                  </span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    name="accountType"
+                    value="busines"
+                  />
+                  <span className="ml-2 ml-2 uppercase text-sm"> generic</span>
                 </label>
               </div>
             </div>
-            <div>price range</div>
           </div>
         </div>
         <div className="flex flex-col border border-solid p-5">
