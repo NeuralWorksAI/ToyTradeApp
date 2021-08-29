@@ -35,6 +35,33 @@ const data = [
       "My kids love this and just got the latest radio controlled boat. We just want to give this one away",
     toyCategory: "Radio controlled",
   },
+  {
+    userId: 1,
+    title: "Radio Controlled Boat ",
+    image:
+      "https://images.unsplash.com/photo-1550009375-99bb7e3bf4d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=364&q=80",
+    description:
+      "My kids love this and just got the latest radio controlled boat. We just want to give this one away",
+    toyCategory: "Radio controlled",
+  },
+  {
+    userId: 1,
+    title: "Radio Controlled Boat ",
+    image:
+      "https://images.unsplash.com/photo-1550009375-99bb7e3bf4d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=364&q=80",
+    description:
+      "My kids love this and just got the latest radio controlled boat. We just want to give this one away",
+    toyCategory: "Radio controlled",
+  },
+  {
+    userId: 1,
+    title: "Radio Controlled Boat ",
+    image:
+      "https://images.unsplash.com/photo-1550009375-99bb7e3bf4d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=364&q=80",
+    description:
+      "My kids love this and just got the latest radio controlled boat. We just want to give this one away",
+    toyCategory: "Radio controlled",
+  },
 ];
 
 export default data;

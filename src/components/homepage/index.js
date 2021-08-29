@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../navbar/index";
+// import Navbar from "../navbar/index";
 import data from "../data.js";
 import Modal from "react-modal";
 import { useState } from "react";
+import { CgMathPlus } from "react-icons/cg";
+import { useHistory } from "react-router-dom";
 
 const customStyles = {
   content: {
@@ -23,6 +25,7 @@ function Index({ postSubmit, realData }) {
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [toys, setToys] = useState([]);
+  let history = useHistory();
 
   let arr = [];
 
@@ -78,23 +81,29 @@ function Index({ postSubmit, realData }) {
 
   const sortToys = (toys) => {
     return toys.map((x) => (
-      <div className="border border-solid rounded-xl justify-center max-w-xs p-3 m-1">
+      <div
+        className=" border border-solid rounded-md justify-center p-3 m-1 "
+        style={{ maxWidth: "10rem" }}
+      >
         {" "}
         <img
           src={x.image}
           alt={x.image}
           style={{
-            maxWidth: "10rem",
             margin: "0 auto",
-            maxHeight: "40vh",
+            maxHeight: "20vh",
           }}
+          className="w-max"
         />
         <div
           className="flex flex-col "
           style={{ display: "flex", justifyContent: "flex-start" }}
         >
-          <div className="text-left"> {x.title} </div>
-          <div className="flex flex-col ">
+          <div className="text-left uppercase text-sm font-bold">
+            {" "}
+            {x.title}{" "}
+          </div>
+          <div className="flex flex-col text-xs ">
             {x.description.length > 100
               ? x.description.substring(0, 100) + "..."
               : x.description}
@@ -110,45 +119,47 @@ function Index({ postSubmit, realData }) {
     ));
   };
   fetchToys();
+  const handleLogout = () => {
+    localStorage.clear();
+    history.push("/");
+  };
+
   return (
     <div>
       <div
-        className="p-0.5 border border-blue-200 text-lg text-white"
+        className="p-0.5 border border-blue-200 text-base text-white"
         style={{ backgroundColor: "#FFBF69" }}
       >
-        <div className="flex  justify-around p-1 ">
-          <button
-            onClick={openModal}
-            // className="
-            //   rounded-full py-1 px-3
-            //   bg-red-200
-            //   text-white
-            //   hover:bg-red-400 hover:border-transparent"
-          >
-            Post
+        <div className="flex justify-around ">
+          <button onClick={openModal} className="w-2/4">
+            <CgMathPlus className="w-2/4" style={{ height: "40px" }} />
           </button>
-          <button>{<Link to="/profile">profile</Link>}</button>
-          <Navbar />
+          <div className=" pt-1 justify-center my-1 flex space-x-5 font-thin text-base uppercase">
+            <Link to="/profile" className="font-thin">
+              profile
+            </Link>
+            <div onClick={handleLogout}>log out</div>
+          </div>
         </div>
       </div>
 
-      <div className="flex justify-center  w-screen space-x-5  m-3">
+      <div className="flex justify-center w-screen space-x-5  m-2">
         <div
-          className=" text-yellow-700 w-10/12  "
+          className=" text-yellow-700 w-7/12 "
           style={{ backgroundColor: "#CBF3F0" }}
         >
-          <div>
-            <div className="flex flex-col uppercase text-sm pt-6">
+          <div className="justify-center content-center mx-10 ">
+            <div className="uppercase text-lg  pt-6 justify-center content-center  ">
               <p className="font-bold ">categories</p>
-              <div className="mt-2 flex flex-col">
-                <label className="inline-flex items-center ml-6">
+              <div className="mt-2 flex flex-col ">
+                <label className="inline-flex items-center  ml-6">
                   <input
                     type="checkbox"
                     className="checkbox"
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     action-figures
                   </span>
@@ -160,7 +171,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     stuffed-animals
                   </span>
                 </label>
@@ -171,7 +182,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">cars</span>
+                  <span className=" ml-2 uppercase text-sm ">cars</span>
                 </label>
                 <label className="inline-flex items-center ml-6">
                   <input
@@ -180,7 +191,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     radio-controlled
                   </span>
@@ -192,7 +203,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     construction-toys
                   </span>
@@ -205,7 +216,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     creative-toys
                   </span>
@@ -217,7 +228,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">dolls</span>
+                  <span className=" ml-2 uppercase text-sm ">dolls</span>
                 </label>
                 <label className="inline-flex items-center ml-6">
                   <input
@@ -226,7 +237,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     educational-toys
                   </span>
@@ -238,7 +249,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm">
+                  <span className=" ml-2 uppercase text-sm ">
                     {" "}
                     electronic-toys
                   </span>
@@ -250,7 +261,7 @@ function Index({ postSubmit, realData }) {
                     name="accountType"
                     value="busines"
                   />
-                  <span className="ml-2 ml-2 uppercase text-sm"> generic</span>
+                  <span className=" ml-2 uppercase text-sm "> generic</span>
                 </label>
               </div>
             </div>
@@ -290,9 +301,9 @@ function Index({ postSubmit, realData }) {
               price
             </span>
           </div>
-          <div className="flex flex-wrap ">
+          <div className="flex flex-wrap justify-center ">
             {/* {realData.length === 0 ?   */}
-            {sortToys(toys)}
+            {sortToys(data)}
           </div>
         </div>
       </div>
