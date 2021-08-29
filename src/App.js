@@ -71,7 +71,6 @@ function App() {
       setUserID(data._id);
     }
   });
-
   console.log(userID);
   const postSubmit = (e, title, description, image, category) => {
     e.preventDefault();
@@ -96,7 +95,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((err) => {
-        console.log("error posting" + err + category);
+        console.log("error posting" + err);
       });
   };
   const authPost = (data) => {};

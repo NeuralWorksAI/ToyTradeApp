@@ -24,21 +24,19 @@ function Index({ postSubmit, realData }) {
   const [category, setCategory] = useState("");
   const [toys, setToys] = useState([]);
 
-  console.log("data", realData);
-  let arr = [];
+  // console.log("data", realData);
+  // let arr = [];
 
   const handlePost = (e) => {
     switch (e.target.name) {
       case "title":
         setTitle(e.target.value);
-        setImage("this is an image");
         break;
       case "description":
         setDescription(e.target.value);
         break;
-
       case "image":
-        setImage("image");
+        setImage(e.target.value);
         break;
       case "category":
         setCategory(e.target.value);
@@ -47,7 +45,7 @@ function Index({ postSubmit, realData }) {
         alert("hello");
     }
   };
-
+  
   const setSelect = (e) => {
     setCategory(e.target.value);
   };
@@ -216,7 +214,7 @@ function Index({ postSubmit, realData }) {
         style={customStyles}
       >
         Donate a Toy
-        <form>
+        <form onSubmit={(e)=>{postSubmit(e, title, description, image, category)}}>
           <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             title
           </label>
@@ -241,12 +239,12 @@ function Index({ postSubmit, realData }) {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
           />
           <div className="flex ">
-            {/* <div className="flex flex-col" style={{ width: "15rem" }}>
+            <div className="flex flex-col" style={{ width: "15rem" }}>
               <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 image
               </label>
-              <input name="image" type="file" onChange={(e) => handlePost(e)} />
-            </div> */}
+              <input name="image" type="text" onChange={(e) => handlePost(e)} />
+            </div>
             <div>
               <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 category
@@ -294,9 +292,9 @@ function Index({ postSubmit, realData }) {
               close
             </button>
             <button
-              onClick={(e) => {
-                postSubmit(e, title, description, image, category);
-              }}
+              // onClick={(e) => {
+              //   postSubmit(e, title, description, image, category);
+              // }}
               className=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 border border-solid px-2 py-2 rounded-full"
               type="submit"
             >
