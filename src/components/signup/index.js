@@ -41,8 +41,11 @@ function Index({ handleSignup }) {
       style={{ backgroundColor: "#cbf3f0" }}
     >
       <div className=" mx-64 w-full">
-        <div className="flex flex-col justify-center border  border-solid p-6 h-5/6 transform translate-x-6 translate-y-10">
-          <form className="  h-5/6 " style={{ backgroundColor: "#ffbf69" }}>
+        <div className="h-5/6">
+          <form
+            className="flex flex-col justify-center border  border-solid p-6 h-5/6 transform translate-x-6 translate-y-10 "
+            style={{ backgroundColor: "#ffbf69" }}
+          >
             <p className="uppercase block relative inset-x-0 top-0  transform -translate-y-4 text-xl text-white">
               Sign up
             </p>
@@ -112,7 +115,7 @@ function Index({ handleSignup }) {
               Sign Up
             </button>
           </form>
-          <div className="transform translate-y-4  pb-4 block uppercase tracking-wide text-gray-700 text-xs font-bold">
+          <div className="relative transform -translate-y-7 translate-x-7 block uppercase tracking-wide text-gray-700 text-xs font-bold">
             Already have an account?
             <div className="flex justify-evenly pt-2 uppercase">
               <button
