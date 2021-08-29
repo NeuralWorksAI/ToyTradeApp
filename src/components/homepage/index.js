@@ -7,6 +7,7 @@ import { useState } from "react";
 import { CgMathPlus } from "react-icons/cg";
 import { useHistory } from "react-router-dom";
 import { FaLeaf } from "react-icons/fa";
+import { BiSearchAlt } from "react-icons/bi";
 
 const customStyles = {
   content: {
@@ -110,7 +111,7 @@ function Index({ postSubmit, realData }) {
             margin: "0 auto",
             maxHeight: "20vh",
           }}
-          className="w-max"
+          className="object-cover h-52 w-full "
         />
         <div
           className="flex flex-col "
@@ -156,10 +157,23 @@ function Index({ postSubmit, realData }) {
             />
           </div>
 
-          {/* <button onClick={openModal} className="w-2/4">
-            <CgMathPlus className="w-1/4" style={{ height: "40px" }} />
-          </button> */}
-          <div className=" pt-1 my-1 flex space-x-5 font-thin text-base justify-end uppercase w-3/4">
+          <div
+            className=" pt-4 my-1 flex space-x-5 font-thin 
+          text-base justify-end uppercase w-3/4"
+          >
+            <div className="w-64 flex object-center items-center justify-center mr-20">
+              <input
+                className=" rounded-lg bg-gray-50 w-full focus:outline-none text-black
+              "
+                style={{
+                  height: "25px",
+                }}
+                placeholder="search"
+                onChange={(e) => {
+                  handleSearch(e);
+                }}
+              />
+            </div>
             <div>
               <button onClick={openModal}>
                 <CgMathPlus
@@ -303,16 +317,6 @@ function Index({ postSubmit, realData }) {
           </div>
         </div>
         <div className="flex flex-col border border-solid p-5">
-          <div>
-            <input
-              className=" rounded-lg bg-gray-50 w-full focus:outline-none
-              "
-              placeholder="   search"
-              onChange={(e) => {
-                handleSearch(e);
-              }}
-            />
-          </div>
           <div className="p-4 space-x-2 ">
             <span
               onClick={handleClick}
