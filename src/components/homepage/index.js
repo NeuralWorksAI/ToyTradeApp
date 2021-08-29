@@ -16,49 +16,35 @@ const customStyles = {
   },
 };
 
-function Index() {
+function Index({ postSubmit, realData }) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-
+  console.log("data", realData);
   let arr = [];
 
   const handlePost = (e) => {
     switch (e.target.name) {
       case "title":
         setTitle(e.target.value);
+        setImage("this is an image");
         break;
       case "description":
         setDescription(e.target.value);
         break;
-      case "image":
-        setImage("image");
+      // case "image":
+      //   setImage("image");
+      // break;
       case "category":
         setCategory(e.target.value);
+        break;
       default:
-        alert("something");
+        alert("hello");
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const token = localStorage.token;
-    fetch("https://toy-trader.herokuapp.com/api/posts/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        title: title,
-        description: description,
-        image: image,
-        category: category,
-      }),
-    }).then((response) => console.log(response.json()));
-  };
   function openModal() {
     setIsOpen(true);
   }
@@ -76,7 +62,7 @@ function Index() {
   const handleClick = () => {
     //span clicked
   };
-
+  console.log(data.concat(realData));
   return (
     <div>
       <div className="p-0.5 border border-blue-200 text-lg bg-blue-400 text-white">
@@ -171,6 +157,7 @@ function Index() {
             </span>
           </div>
           <div className="flex flex-wrap ">
+            {/* {realData.length === 0 ?   */}
             {data.map((x) => {
               return (
                 <div className="border border-solid rounded-xl justify-center max-w-xs p-3 m-1">
@@ -292,7 +279,7 @@ function Index() {
             </button>
             <button
               onClick={(e) => {
-                handleSubmit(e);
+                postSubmit(e, title, description, image, category);
               }}
               className=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 border border-solid px-2 py-2 rounded-full"
               type="submit"

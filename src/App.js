@@ -7,9 +7,12 @@ import LearnMore from "./components/LearnMore/index";
 import Profile from "./components/profile/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 function App() {
   let history = useHistory();
+  const [userID, setUserID] = useState("");
+  const [data, setData] = useState([]);
   const api = "https://toy-trader.herokuapp.com/api";
 
   const handleLogin = (e, email, password) => {
@@ -53,11 +56,36 @@ function App() {
     if (data.token) {
       const token = data.token;
       localStorage.setItem("token", token);
+      setUserID(data.id);
       history.push("/dashboard");
     } else if (data.name) {
       history.push("/dashboard");
+      setUserID(data._id);
     }
   };
+
+  const postSubmit = (e, title, description, image, category) => {
+    e.preventDefault();
+    const token = localStorage.token;
+
+    fetch("https://toy-trader.herokuapp.com/api/posts/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        userId: userID,
+        title: title,
+        description: description,
+        image: image,
+        category: category,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  };
+  const authPost = (data) => {};
 
   return (
     <div className="App">
@@ -96,7 +124,7 @@ function App() {
           exact
           path="/dashboard"
           render={() => {
-            return <Homepage />;
+            return <Homepage postSubmit={postSubmit} realData={data} />;
           }}
         />
         <Route
