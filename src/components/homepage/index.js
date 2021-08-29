@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import { useState } from "react";
 import { CgMathPlus } from "react-icons/cg";
 import { useHistory } from "react-router-dom";
+import { FaLeaf } from "react-icons/fa";
 
 const customStyles = {
   content: {
@@ -20,11 +21,13 @@ const customStyles = {
 
 function Index({ postSubmit, realData }) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen2, setIsOpen2] = React.useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [toys, setToys] = useState([]);
+  const [oneToy, setOneToy] = useState([]);
   let history = useHistory();
 
   // console.log("data", realData);
@@ -48,16 +51,23 @@ function Index({ postSubmit, realData }) {
         alert("hello");
     }
   };
-  
+
   const setSelect = (e) => {
     setCategory(e.target.value);
   };
   function openModal() {
     setIsOpen(true);
   }
+  function openModal2() {
+    setIsOpen2(true);
+  }
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function closeModal2() {
+    setIsOpen2(false);
   }
 
   const handleSearch = (e) => {
@@ -68,6 +78,11 @@ function Index({ postSubmit, realData }) {
 
   const handleClick = () => {
     //span clicked
+  };
+
+  const handleModal = (e, toys) => {
+    openModal2();
+    setOneToy(toys);
   };
 
   const fetchToys = () => {
@@ -83,6 +98,9 @@ function Index({ postSubmit, realData }) {
       <div
         className=" border border-solid rounded-md justify-center p-3 m-1 "
         style={{ maxWidth: "10rem" }}
+        onClick={(e) => {
+          handleModal(e, x);
+        }}
       >
         {" "}
         <img
@@ -126,17 +144,35 @@ function Index({ postSubmit, realData }) {
   return (
     <div>
       <div
-        className="p-0.5 border border-blue-200 text-base text-white"
+        className="p-0.5 border text-base text-white"
         style={{ backgroundColor: "#FFBF69" }}
       >
         <div className="flex justify-around ">
-          <button onClick={openModal} className="w-2/4">
-            <CgMathPlus className="w-2/4" style={{ height: "40px" }} />
-          </button>
           <div className=" pt-1 justify-center my-1 flex space-x-5 font-thin text-base uppercase">
-            <Link to="/profile" className="font-thin">
-              profile
-            </Link>
+            toyrade
+            <FaLeaf
+              style={{ height: "40px" }}
+              className="w-8 flex items-center justify-center "
+            />
+          </div>
+
+          {/* <button onClick={openModal} className="w-2/4">
+            <CgMathPlus className="w-1/4" style={{ height: "40px" }} />
+          </button> */}
+          <div className=" pt-1 my-1 flex space-x-5 font-thin text-base justify-end uppercase w-3/4">
+            <div>
+              <button onClick={openModal}>
+                <CgMathPlus
+                  className="w-8 flex items-center justify-center "
+                  style={{ height: "25px" }}
+                />
+              </button>
+            </div>
+            <div>
+              <Link to="/profile" className="font-thin">
+                profile
+              </Link>
+            </div>
             <div onClick={handleLogout}>log out</div>
           </div>
         </div>
@@ -312,7 +348,11 @@ function Index({ postSubmit, realData }) {
         style={customStyles}
       >
         Donate a Toy
-        <form onSubmit={(e)=>{postSubmit(e, title, description, image, category)}}>
+        <form
+          onSubmit={(e) => {
+            postSubmit(e, title, description, image, category);
+          }}
+        >
           <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             title
           </label>
@@ -401,6 +441,41 @@ function Index({ postSubmit, realData }) {
           </div>
         </form>
       </Modal>
+      <div>
+        <Modal
+          isOpen={modalIsOpen2}
+          onRequestClose={closeModal2}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <button onClick={closeModal2}>close</button>
+          <div className="uppercase p-3">{oneToy.title}</div>
+
+          <div className="flex justify-center items-center">
+            <img
+              src={oneToy.image}
+              alt={oneToy.id}
+              className="w-4/12 flex justify-center items-center"
+            />
+            <div
+              className="flex flex-col justify-center 
+            items-center"
+            >
+              <p className="text-left justify-center items-center pl-4 uppercase text-sm font-medium">
+                Description
+              </p>
+              <p className="text-left flex justify-center items-center w-8/12 pl-4 mb-32">
+                {" "}
+                {oneToy.description}
+              </p>
+
+              <p className="w-3/12 text-left justify-center items-center pl-4 mb-32 border border-solid rounded-md">
+                {oneToy.toyCategory}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 }
