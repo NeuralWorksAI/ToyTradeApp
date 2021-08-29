@@ -27,12 +27,10 @@ function Index({ postSubmit, realData }) {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-  const [toys, setToys] = useState([]);
+  const [allToys, setToys] = useState([]);
   const [oneToy, setOneToy] = useState([]);
+  // setToys(data);
   let history = useHistory();
-
-  // console.log("data", realData);
-  // let arr = [];
 
   const handlePost = (e) => {
     switch (e.target.name) {
@@ -73,8 +71,17 @@ function Index({ postSubmit, realData }) {
 
   const handleSearch = (e) => {
     e.persist();
-    let filtered = data.filter((x) => x.toyCategory === e.target.value);
-    console.log(data.filter);
+    let current = e.target.value;
+    let arr = [];
+    console.log(current);
+    for (let i = 0; i < data.length; i++) {
+      let search = data[i].title;
+      if (search.includes(current)) {
+        console.log("search", search);
+        arr.push(data[i]);
+      }
+    }
+    setToys(arr);
   };
 
   const handleClick = () => {
@@ -86,57 +93,15 @@ function Index({ postSubmit, realData }) {
     setOneToy(toys);
   };
 
-  const fetchToys = () => {
-    fetch("https://toy-trader.herokuapp.com/api/posts/toys", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((data) => setToys(data));
-  };
+  // const fetchToys = () => {
+  //   fetch("https://toy-trader.herokuapp.com/api/posts/toys", {
+  //     method: "GET",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setToys(data));
+  // };
 
-  const sortToys = (toys) => {
-    return toys.map((x) => (
-      <div
-        className=" border border-solid rounded-md justify-center p-3 m-1 "
-        style={{ maxWidth: "10rem" }}
-        onClick={(e) => {
-          handleModal(e, x);
-        }}
-      >
-        {" "}
-        <img
-          src={x.image}
-          alt={x.image}
-          style={{
-            margin: "0 auto",
-            maxHeight: "20vh",
-          }}
-          className="object-cover h-52 w-full "
-        />
-        <div
-          className="flex flex-col "
-          style={{ display: "flex", justifyContent: "flex-start" }}
-        >
-          <div className="text-left uppercase text-sm font-bold">
-            {" "}
-            {x.title}{" "}
-          </div>
-          <div className="flex flex-col text-xs ">
-            {x.description.length > 100
-              ? x.description.substring(0, 100) + "..."
-              : x.description}
-            <span
-              className="border border-solid rounded-full text-xs inset-x-0 bottom-0 "
-              style={{ maxWidth: "7rem" }}
-            >
-              {x.toyCategory}
-            </span>
-          </div>
-        </div>
-      </div>
-    ));
-  };
-  fetchToys();
+  // fetchToys();
   const handleLogout = () => {
     localStorage.clear();
     history.push("/");
@@ -197,7 +162,7 @@ function Index({ postSubmit, realData }) {
           className=" text-yellow-700 w-7/12 "
           style={{ backgroundColor: "#CBF3F0" }}
         >
-          <div className="justify-center content-center mx-10 ">
+          <div className="justify-center content-center mx-10">
             <div className="uppercase text-lg  pt-6 justify-center content-center  ">
               <p className="font-bold ">categories</p>
               <div className="mt-2 flex flex-col ">
@@ -316,8 +281,8 @@ function Index({ postSubmit, realData }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col border border-solid p-5">
-          <div className="p-4 space-x-2 ">
+        <div className="flex flex-col border border-solid p-5 ">
+          {/* <div className="p-4 space-x-2 ">
             <span
               onClick={handleClick}
               className="
@@ -339,10 +304,89 @@ function Index({ postSubmit, realData }) {
             >
               price
             </span>
-          </div>
+          </div> */}
           <div className="flex flex-wrap justify-center ">
-            {/* {realData.length === 0 ?   */}
-            {sortToys(data)}
+            {allToys.length === 0
+              ? data.map((x) => (
+                  <div
+                    className=" border rounded-md justify-center p-3 m-1 "
+                    style={{ maxWidth: "10rem", backgroundColor: "#CBF3F0" }}
+                    onClick={(e) => {
+                      handleModal(e, x);
+                    }}
+                  >
+                    {" "}
+                    <img
+                      src={x.image}
+                      alt={x.image}
+                      style={{
+                        margin: "0 auto",
+                        maxHeight: "20vh",
+                      }}
+                      className="object-cover h-52 w-full "
+                    />
+                    <div
+                      className="flex flex-col "
+                      style={{ display: "flex", justifyContent: "flex-start" }}
+                    >
+                      <div className="text-left uppercase text-sm font-bold">
+                        {" "}
+                        {x.title}{" "}
+                      </div>
+                      <div className="flex flex-col place-items-end text-xs ">
+                        {x.description.length > 100
+                          ? x.description.substring(0, 100) + "..."
+                          : x.description}
+                        <span
+                          className="border border-solid rounded-full text-xs inset-x-0 bottom-0 "
+                          style={{ maxWidth: "7rem" }}
+                        >
+                          {x.toyCategory}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : allToys.map((x) => (
+                  <div
+                    className=" border border-solid rounded-md justify-center p-3 m-1 "
+                    style={{ maxWidth: "10rem", backgroundColor: "#CBF3F0" }}
+                    onClick={(e) => {
+                      handleModal(e, x);
+                    }}
+                  >
+                    {" "}
+                    <img
+                      src={x.image}
+                      alt={x.image}
+                      style={{
+                        margin: "0 auto",
+                        maxHeight: "20vh",
+                      }}
+                      className="object-cover h-52 w-full "
+                    />
+                    <div
+                      className="flex flex-col "
+                      style={{ display: "flex", justifyContent: "flex-start" }}
+                    >
+                      <div className="text-left uppercase text-sm font-bold">
+                        {" "}
+                        {x.title}{" "}
+                      </div>
+                      <div className="flex flex-col text-xs ">
+                        {x.description.length > 100
+                          ? x.description.substring(0, 100) + "..."
+                          : x.description}
+                        <span
+                          className="border border-solid rounded-full text-xs inset-x-0 bottom-0 "
+                          style={{ maxWidth: "7rem" }}
+                        >
+                          {x.toyCategory}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
