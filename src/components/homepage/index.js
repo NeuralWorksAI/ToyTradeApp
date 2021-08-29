@@ -20,12 +20,45 @@ function Index() {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
 
   let arr = [];
 
-  const handlePost = (e) => {};
+  const handlePost = (e) => {
+    switch (e.target.name) {
+      case "title":
+        setTitle(e.target.value);
+        break;
+      case "description":
+        setDescription(e.target.value);
+        break;
+      case "image":
+        setImage("image");
+      case "category":
+        setCategory(e.target.value);
+      default:
+        alert("something");
+    }
+  };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const token = localStorage.token;
+    fetch("https://toy-trader.herokuapp.com/api/posts/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        title: title,
+        description: description,
+        image: image,
+        category: category,
+      }),
+    }).then((response) => console.log(response.json()));
+  };
   function openModal() {
     setIsOpen(true);
   }
@@ -206,12 +239,12 @@ function Index() {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-2 px-2 mb-2 leading-tight focus:outline-none focus:bg-white"
           />
           <div className="flex ">
-            <div className="flex flex-col" style={{ width: "15rem" }}>
+            {/* <div className="flex flex-col" style={{ width: "15rem" }}>
               <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 image
               </label>
-              <input name="image" type="file" />
-            </div>
+              <input name="image" type="file" onChange={(e) => handlePost(e)} />
+            </div> */}
             <div>
               <label className=" flex flex-col block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 category
@@ -220,17 +253,23 @@ function Index() {
                 <select
                   className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                  name="category"
+                  onChange={(e) => handlePost(e)}
+                  placeholder="category"
                 >
-                  <option>Action Figures</option>
-                  <option>Stuffed Animals</option>
-                  <option>Cars</option>
-                  <option>Radio Controlled</option>
-                  <option>Construction Toys</option>
-                  <option>Creative Toys</option>
-                  <option>Dolls</option>
-                  <option>Educational toys</option>
-                  <option>Electronic toys</option>
-                  <option>Generic</option>
+                  <option value="" disabled selected>
+                    Select your option
+                  </option>
+                  <option>action-figures</option>
+                  <option>stuffed-animals</option>
+                  <option>cars</option>
+                  <option>radio-controlled</option>
+                  <option>construction-toys</option>
+                  <option>creative-toys</option>
+                  <option>dolls</option>
+                  <option>educational-toys</option>
+                  <option>electronic-toys</option>
+                  <option>generic</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -256,6 +295,7 @@ function Index() {
                 handleSubmit(e);
               }}
               className=" block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 border border-solid px-2 py-2 rounded-full"
+              type="submit"
             >
               submit
             </button>
